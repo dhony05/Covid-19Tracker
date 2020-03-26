@@ -36,7 +36,7 @@ public class CoronaVirusDateServices {
 	
 	@PostConstruct
 	@Scheduled(cron = "*  *  1  *  *  *")
-	public void fetchVirusData() throws IOException, InterruptedException {
+	public List<LocationStats> fetchVirusData() throws IOException, InterruptedException {
 		 List<LocationStats> newStats = new ArrayList<>();
 		
 		HttpClient client = HttpClient.newHttpClient();
@@ -54,15 +54,17 @@ public class CoronaVirusDateServices {
 			LocationStats locationStat = new LocationStats();
 		    locationStat.setState(record.get("Province/State"));
 		    locationStat.setCountry(record.get("Country/Region"));
-		    locationStat.setLatestTotalCases(Integer.parseInt(record.get(record.size() - 1)));
+		    locationStat.setLatitude(Double.parseDouble(record.get("Lat")));
+		    locationStat.setLongitude(Double.parseDouble(record.get("Long")));
+		    locationStat.setLatestTotalCases(Integer.parseInt(record.get(record.size() -1)));
 		   
-		    System.out.println(locationStat);
+		   
 		    newStats.add(locationStat);
 	}
 		
 		this.allStats = newStats;
 	
 	
-	     
+	     return allStats;
 	}
 }

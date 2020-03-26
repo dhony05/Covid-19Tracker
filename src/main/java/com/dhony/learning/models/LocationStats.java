@@ -9,6 +9,29 @@ public class LocationStats {
 	private  String country;
 	
     private  int latestTotalCases;
+    
+    private double latitude;
+    
+    public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+
+	private double longitude;
+    
+    
 
 
     public String getState() {
@@ -36,11 +59,12 @@ public class LocationStats {
 		this.latestTotalCases = latestTotalCases;
 	}
 
-
 	@Override
 	public String toString() {
 		return "LocationStats [state=" + state + ", country=" + country + ", latestTotalCases=" + latestTotalCases
-				+ "]";
+				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 
+
+	
 }
